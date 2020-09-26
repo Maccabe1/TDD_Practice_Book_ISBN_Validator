@@ -24,10 +24,15 @@ public class ValidateISBNTest {
     public void nineDigitISBNsAreNotAllowed() {
         ValidateISBN validator = new ValidateISBN();
         assertThrows(NumberFormatException.class,
-            () -> {
-                validator.checkISBN("123456789");
-            }
-            );
+            () -> { validator.checkISBN("123456789");
+        });
+    }
 
+    @Test
+    public void noneNumericISBNsAreNotAllowed() {
+        ValidateISBN validator = new ValidateISBN();
+        assertThrows(NumberFormatException.class,
+                () -> { validator.checkISBN("helloworld");
+        });
     }
 }
