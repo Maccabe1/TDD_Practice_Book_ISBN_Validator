@@ -1,8 +1,6 @@
 import org.junit.Test;
 
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class ValidateISBNTest {
 
@@ -20,5 +18,11 @@ public class ValidateISBNTest {
         ValidateISBN validator = new ValidateISBN();
         boolean result = validator.checkISBN("0140449117");
         assertFalse(result);
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void nineDigitISBNsAreNotAllowed() {
+        ValidateISBN validator = new ValidateISBN();
+        validator.checkISBN("123456789");
     }
 }
