@@ -21,6 +21,13 @@ public class ValidateISBNTest {
     }
 
     @Test
+    public void ISBNEndingWithXAreValid() {
+        ValidateISBN validator = new ValidateISBN();
+        boolean result = validator.checkISBN("014044911X");
+        assertTrue(result);
+    }
+
+    @Test
     public void nineDigitISBNsAreNotAllowed() {
         ValidateISBN validator = new ValidateISBN();
         assertThrows(NumberFormatException.class,
