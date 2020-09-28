@@ -19,10 +19,6 @@ public class ValidateISBN {
             }
         }
 
-        if(total % 11 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return total % 11 == 0;
     }
 }

@@ -27,19 +27,15 @@ public class ValidateISBNTest {
         assertTrue(result);
     }
 
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void nineDigitISBNsAreNotAllowed() {
         ValidateISBN validator = new ValidateISBN();
-        assertThrows(NumberFormatException.class,
-            () -> { validator.checkISBN("123456789");
-        });
+        validator.checkISBN("123456789");
     }
 
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void noneNumericISBNsAreNotAllowed() {
         ValidateISBN validator = new ValidateISBN();
-        assertThrows(NumberFormatException.class,
-                () -> { validator.checkISBN("helloworld");
-        });
+        validator.checkISBN("helloworld");
     }
 }
