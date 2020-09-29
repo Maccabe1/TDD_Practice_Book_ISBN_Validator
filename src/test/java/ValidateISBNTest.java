@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class ValidateISBNTest {
 
     @Test
-    public void checkValidISBN() {
+    public void tenDigitISBNsAreValid() {
         ValidateISBN validator = new ValidateISBN();
         boolean result = validator.checkISBN("0140449116");
         assertTrue("first value", result);
@@ -27,6 +27,15 @@ public class ValidateISBNTest {
         assertTrue(result);
     }
 
+    @Test
+    public void thirteenDigitISBNsAreValid() {
+        ValidateISBN validator = new ValidateISBN();
+        boolean result = validator.checkISBN("0140449111234");
+        assertTrue("first value", result);
+        result = validator.checkISBN("0140177396123");
+        assertTrue("second value", result);
+    }
+
     @Test(expected = NumberFormatException.class)
     public void nineDigitISBNsAreNotAllowed() {
         ValidateISBN validator = new ValidateISBN();
@@ -38,4 +47,5 @@ public class ValidateISBNTest {
         ValidateISBN validator = new ValidateISBN();
         validator.checkISBN("helloworld");
     }
+
 }
