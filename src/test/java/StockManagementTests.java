@@ -27,7 +27,6 @@ public class StockManagementTests {
         stockManager.setWebService(testWebService);
         stockManager.setDatabaseService(testDatabaseService);
 
-        // Test business logic
         String isbn = "0140177396";
         String locatorCode = stockManager.getLocatorCode(isbn);
         assertEquals("7396J4", locatorCode);
