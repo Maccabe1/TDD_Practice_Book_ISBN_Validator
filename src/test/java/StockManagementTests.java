@@ -8,20 +8,12 @@ public class StockManagementTests {
     @Test
     public void testCanGetACorrectLocatorCode() {
 
-        // create overriding mock version of external 3rd party web service (test stub)
-        ExternalISBNDataService testWebService = new ExternalISBNDataService() {
-            @Override
-            public Book lookup(String isbn) {
-                return new Book(isbn, "Of Mice and Men", "J. Steinbeck");
-            }
-        };
+        //New Mock for web service to replace stubs
+        ExternalISBNDataService testWebService = mock(ExternalISBNDataService.class);
+        when(testWebService.lookup(anyString())).thenReturn(new Book("0140177396", "Of Mice and Men", "J. Steinbeck"));
 
-        ExternalISBNDataService testDatabaseService = new ExternalISBNDataService() {
-            @Override
-            public Book lookup(String isbn) {
-                return null;
-            }
-        };
+        ExternalISBNDataService testDatabaseService = mock(ExternalISBNDataService.class);
+        when(testDatabaseService.lookup(anyString())).thenReturn(null);
 
         StockManager stockManager = new StockManager();
         stockManager.setWebService(testWebService);
